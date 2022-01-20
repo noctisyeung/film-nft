@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
+import '@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol';
+import '@openzeppelin/contracts/access/Ownable.sol';
+import '@openzeppelin/contracts/utils/Counters.sol';
 
 contract FilmNFT is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
@@ -13,10 +13,10 @@ contract FilmNFT is ERC721, ERC721URIStorage, Ownable {
 
     mapping(string => uint8) private existingUri;
 
-    constructor() ERC721("FilmNFT", "NYKHFILM") {}
+    constructor() ERC721('FilmNFT', 'NYKHFILM') {}
 
     function _baseURI() internal pure override returns (string memory) {
-        return "ipfs://";
+        return 'ipfs://';
     }
 
     // Alowing NFT Owner to Mint the token
@@ -29,10 +29,7 @@ contract FilmNFT is ERC721, ERC721URIStorage, Ownable {
 
     // The following functions are overrides required by Solidity.
 
-    function _burn(uint256 tokenId)
-        internal
-        override(ERC721, ERC721URIStorage)
-    {
+    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
         super._burn(tokenId);
     }
 
@@ -51,13 +48,9 @@ contract FilmNFT is ERC721, ERC721URIStorage, Ownable {
     }
 
     // Function for user to pay for the NFT and mint it
-    function payToMint(address to, string memory metaUri)
-        public
-        payable
-        returns (uint256)
-    {
-        require(existingUri[metaUri] != 1, "NFT already minted");
-        require(msg.value > 0, "NFT must be paid");
+    function payToMint(address to, string memory metaUri) public payable returns (uint256) {
+        require(existingUri[metaUri] != 1, 'NFT already minted');
+        require(msg.value > 0, 'NFT must be paid');
 
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
