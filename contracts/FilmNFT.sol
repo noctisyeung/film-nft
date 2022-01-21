@@ -50,7 +50,7 @@ contract FilmNFT is ERC721, ERC721URIStorage, Ownable {
     // Function for user to pay for the NFT and mint it
     function payToMint(address to, string memory metaUri) public payable returns (uint256) {
         require(existingUri[metaUri] != 1, 'NFT already minted');
-        require(msg.value > 0, 'NFT must be paid');
+        require(msg.value >= 0.01 ether, 'NFT must be paid');
 
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
