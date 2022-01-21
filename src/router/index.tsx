@@ -6,7 +6,7 @@ import { Navigate, RouteObject } from 'react-router-dom';
 const appRoutes = (isWeb3: boolean): RouteObject[] => [
   {
     path: '/',
-    element: isWeb3 ? <Home /> : <Navigate to="/not-web3" />,
+    element: <Home />,
   },
   {
     path: '/not-web3',
