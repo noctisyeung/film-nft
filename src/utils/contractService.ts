@@ -7,4 +7,4 @@ export const provider = new ethers.providers.Web3Provider(window.ethereum as any
 
 export const signer = provider.getSigner();
 
-export const contract = new ethers.Contract(contractId || '', FilmNFT.abi, signer);
+export const contract = new ethers.Contract(contractId, FilmNFT.abi, signer);

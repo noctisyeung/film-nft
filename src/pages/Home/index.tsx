@@ -7,8 +7,12 @@ const Home = () => {
   const [totalNFT, setTotalNFT] = useState<number>(0);
 
   const getNFTCounter = useCallback(async () => {
-    const total = await contract.count();
-    setTotalNFT(parseInt(total, 10));
+    try {
+      const total = await contract.count();
+      setTotalNFT(parseInt(total, 10));
+    } catch (e) {
+      console.log({ e });
+    }
   }, []);
 
   useEffect(() => {
@@ -24,7 +28,7 @@ const Home = () => {
         {Array(totalNFT + 1)
           .fill(0)
           .map((_, i) => (
-            <NFTItem tokenId={i} key={i} />
+            <NFTItem tokenId={i + 1} key={i} />
           ))}
       </div>
     </div>
